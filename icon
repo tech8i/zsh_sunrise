@@ -1,0 +1,42 @@
+# var
+
+  piece_1="▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅"
+  piece_2="█                        █"
+  piece_3="█                          █"
+  piece_4="█                            █"
+  piece_5="█     ▄▄▄            ▄▄▄     █"
+  piece_6="█    █████          █████    █"
+  piece_7="█     ▀▀▀            ▀▀▀     █"
+  piece_8="█  █         ▅▅▅▅         █  █"
+  piece_9="█   █        ▀▀▀▀        █   █"
+  piece_10="█   █                  █   █"
+  piece_11="█   █                █   █"
+  piece_12="█   █              █   █"
+  piece_13="█   █              █   █"
+  piece_14="█   ▀▀▀▀▀▀▀▀▀▀▀▀▀▀   █"
+  piece_15="█▅▅▅█▀█▅▅▅▅▅▅▅▅█▀█▅▅▅█"
+
+
+# func
+
+  print_txt () {
+    printf "\e[35m%*s\n" $(( (${#1} + $COLUMNS) / 2 )) "$1"
+  }
+
+# cmd
+
+  print_txt $piece_1
+  print_txt $piece_2
+  print_txt $piece_3
+  print_txt $piece_4
+  print_txt $piece_5
+  print_txt $piece_6
+  print_txt $piece_7
+  print_txt $piece_8
+  print_txt $piece_9
+  print_txt $piece_10
+  print_txt $piece_11
+  print_txt $piece_12
+  print_txt $piece_13
+  print_txt $piece_14
+  print_txt $piece_15

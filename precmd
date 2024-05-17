@@ -1,0 +1,54 @@
+preexec () {
+  END=$SECONDS
+}
+
+precmd () {
+
+  # var
+
+    # color
+
+      RED='\e[31m'
+      BLUE='\e[34m'
+      BLACK='\e[30m'
+      GREEN='\e[32m'
+      PINK=%{$'\e[35m'%}
+
+      # bg
+
+        BG_YELLOW='\e[46m'
+        BG_PINK=%{$'\e[45m'%}
+
+        # mod
+
+          RESET=%{$'\e[m'%}
+
+    # cmd
+
+      START=$SECONDS
+      DATE=$(date +%d/%m/%y)
+      TIME=$(date +%H:%M:%S)
+      DIR=$(pwd | sed 's/\//⟫/g ; s/$/⟫/')
+      BAT=$(termux-battery-status | grep perc | tr -d '[a-z]":, ' | sed s/$/%/)
+
+    # calc
+
+      GAP=$(( COLUMNS - 2 ))
+      EXEC=$(( START - END ))
+      GAP_1=$(( COLUMNS - ${#BAT} - 12 ))
+      GAP_2=$(( COLUMNS - ${#DIR} - 12 ))
+
+    # prompt
+
+      PS1="$BG_PINK "$EXEC"s $RESET$PINK$RESET "
+      RPS1="$PINK$RESET$BG_PINK %(?;^^;--) $RESET"
+
+  # cmd
+
+    echo -n "$BG_YELLOW"
+    print "$RED╭${(l:$GAP::═:)}╮"
+    print "$GREEN║$BLACK  : $BAT${(l:$GAP_1:)TIME} :  $GREEN║"
+    print "$GREEN║$BLACK  : $DIR${(l:$GAP_2:)DATE} : 󰃭 $GREEN║"
+    print "$BLUE╰${(l:$GAP::═:)}╯"
+
+}
